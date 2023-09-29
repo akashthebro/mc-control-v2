@@ -19,8 +19,8 @@ namespace mc_control_v2
         static ushort port = Form1.port;
         static string pass = Form1.pass;
 
-        MinecraftCommands command = new MinecraftCommands(address,port,pass);
-        
+        MinecraftCommands command = new MinecraftCommands(address, port, pass);
+
         //vars for selections
 
 

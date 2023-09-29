@@ -47,8 +47,10 @@
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             richTextLog = new RichTextBox();
             groupBox2 = new GroupBox();
+            label2 = new Label();
             groupBox1.SuspendLayout();
             statusStrip1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // gamemodeDrop
@@ -245,12 +247,24 @@
             // 
             // groupBox2
             // 
+            groupBox2.BackColor = SystemColors.AppWorkspace;
+            groupBox2.Controls.Add(label2);
             groupBox2.Location = new Point(273, 12);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(255, 260);
             groupBox2.TabIndex = 11;
             groupBox2.TabStop = false;
             groupBox2.Text = "Server Related";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = SystemColors.ActiveBorder;
+            label2.Location = new Point(6, 242);
+            label2.Name = "label2";
+            label2.Size = new Size(86, 15);
+            label2.TabIndex = 0;
+            label2.Text = "Yet to be made";
             // 
             // Form2
             // 
@@ -269,6 +283,8 @@
             groupBox1.PerformLayout();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -294,5 +310,6 @@
         private TextBox pardontextbox;
         private RadioButton radio_pardonip;
         private RadioButton radio_unban;
+        private Label label2;
     }
 }
