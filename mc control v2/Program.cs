@@ -1,3 +1,6 @@
+
+using System.Net;
+
 namespace mc_control_v2
 {
     internal static class Program
@@ -12,6 +15,12 @@ namespace mc_control_v2
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+            
+            
+            
+            
         }
+        
+        
     }
 }
