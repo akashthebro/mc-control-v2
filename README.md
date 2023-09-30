@@ -2,6 +2,8 @@
 
 A simple minecraft gui rcon client
 
+![programme screenshot](https://cdn.discordapp.com/attachments/572490173645062156/1157577127609258037/image.png)
+
 ##  Description
 
 This application allows server moderators/admins to make changes/interract with their minecraft server without accessing the server console directly.
