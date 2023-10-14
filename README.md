@@ -2,7 +2,7 @@
 
 A simple minecraft gui rcon client
 
-![programme screenshot](https://cdn.discordapp.com/attachments/572490173645062156/1157577127609258037/image.png)
+![programme screenshot](https://cdn.discordapp.com/attachments/572490173645062156/1162784029242822736/image.png)
 
 ##  Description
 
@@ -28,8 +28,21 @@ This application allows server moderators/admins to make changes/interract with 
 
 ## Version History
 
-* 0.1
+* 1.0
     * Basic functionality (only includes player related actions)
+* 1.1
+    * New actions
+      * TP
+      * Say
+      * Difficulty
+      * Toggledownfall
+      * Time change
+      * Gamerules (Daylight cycle & Keep inventory)     
+    * Fixed
+      * Unban
+      * PardonIP
+      * Duplicate text when selecting options
+      
 
 ## Acknowledgments
 
