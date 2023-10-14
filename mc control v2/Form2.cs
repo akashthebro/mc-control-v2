@@ -4,10 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MinecraftConnection;
+using MinecraftConnection.RCON;
+
 
 namespace mc_control_v2
 {
@@ -21,22 +24,24 @@ namespace mc_control_v2
 
         MinecraftCommands command = new MinecraftCommands(address, port, pass);
 
-        //vars for selections
-
-
-
-
         public Form2()
         {
             InitializeComponent();
             gamemodeDrop.DropDownStyle = ComboBoxStyle.DropDownList;
             toolStripStatusLabel1.Text = address + " : " + port;
-            //dropdown list item insert
+            //dropdown list item insert gamemodes
             gamemodeDrop.Items.Insert(0, "Survival");
             gamemodeDrop.Items.Insert(1, "Creative");
             gamemodeDrop.Items.Insert(2, "Adventure");
             gamemodeDrop.Items.Insert(3, "Spectator");
             gamemodeDrop.SelectedIndex = 0;
+
+            //dropdown list item insert difficulty
+            difficultyDrop.Items.Insert(0, "Peaceful");
+            difficultyDrop.Items.Insert(1, "Easy");
+            difficultyDrop.Items.Insert(2, "Normal");
+            difficultyDrop.Items.Insert(3, "Hard");
+            difficultyDrop.SelectedIndex = 2;
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -55,11 +60,13 @@ namespace mc_control_v2
                 {
                     //set gamemode survival
 
-                    //richTextLog.AppendText("\r\n" + "===================================================");
+                    //
                     richTextLog.AppendText("\r\n" + "Changing user gamemode to Survival" + " User " + usernametextbox.Text);
                     richTextLog.ScrollToCaret();
 
                     command.SendCommand("gamemode survival " + usernametextbox.Text);
+
+                    richTextLog.AppendText("");
 
                 }
                 else if (gamemodeDrop.SelectedIndex == 1)
@@ -158,7 +165,7 @@ namespace mc_control_v2
                 richTextLog.AppendText("\r\n" + "Unbanning" + " User " + usernametextbox.Text);
                 richTextLog.ScrollToCaret();
 
-                command.SendCommand("unban " + usernametextbox.Text);
+                command.SendCommand("pardon " + usernametextbox.Text);
 
             }
 
@@ -173,6 +180,129 @@ namespace mc_control_v2
 
             }
 
+            if (radio_tp.Checked)
+            {
+                //execute teleport
+
+                richTextLog.AppendText("\r\n" + "Teleporting " + usernametextbox.Text + " To " + targettp_box.Text);
+                richTextLog.ScrollToCaret();
+
+                command.SendCommand("tp " + usernametextbox + " " + targettp_box.Text);
+            }
+
+            if (radio_say.Checked)
+            {
+                //say message
+
+                richTextLog.AppendText("\r\n" + "Sending message to " + targetsay_box.Text);
+                richTextLog.ScrollToCaret();
+
+                command.SendCommand("tellraw " + targetsay_box.Text + " " + "{" + $"\"text\":\"{say_msg.Text}\",\"color\":\"White\"" + "}");
+            }
+
+            if (radio_diff.Checked)
+            {
+                //set difficulty
+
+                if (difficultyDrop.SelectedIndex == 0)
+                {
+                    //set diff to Peaceful
+
+                    richTextLog.AppendText("\r\n" + "Changing Difficulty to Peaceful");
+                    richTextLog.ScrollToCaret();
+
+                    command.SendCommand("difficulty peaceful");
+                }
+
+                else if (difficultyDrop.SelectedIndex == 1)
+                {
+                    //set diff to easy
+
+                    richTextLog.AppendText("\r\n" + "Changing Difficulty to Easy");
+                    richTextLog.ScrollToCaret();
+
+                    command.SendCommand("difficulty easy");
+                }
+
+                else if (difficultyDrop.SelectedIndex == 2)
+                {
+                    //set diff to normal
+
+                    richTextLog.AppendText("\r\n" + "Changing Difficulty to Normal");
+                    richTextLog.ScrollToCaret();
+
+                    command.SendCommand("difficulty normal");
+                }
+
+                else if (difficultyDrop.SelectedIndex == 3)
+                {
+                    //set diff to hard
+
+                    richTextLog.AppendText("\r\n" + "Changing Difficulty to Hard");
+                    richTextLog.ScrollToCaret();
+
+                    command.SendCommand("difficulty hard");
+                }
+
+                else
+                {
+                    //return error
+
+                    MessageBox.Show("Invalid option slected, please select a valid option", "Invalid option!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+
+            if (radio_downfall.Checked)
+            {
+                //toggle downfall
+
+                richTextLog.AppendText("\r\n" + "toggledownfall triggered");
+                command.SendCommand("toggledownfall");
+            }
+
+            if (radio_time.Checked)
+            {
+                //set time
+
+                richTextLog.AppendText("\r\n" + "Changing time");
+                command.SendCommand("time set " + timevalBox.Text);
+            }
+
+            if (radio_daylightcycle.Checked)
+            {
+                //change gamerule daylightcycle
+
+                if(grt.Checked)
+                {
+                    richTextLog.AppendText("\r\n" + "setting gamerule to true");
+                    command.SendCommand("gamerule dodaylightcycle true");
+                }
+
+                else if (grf.Checked)
+                {
+                    richTextLog.AppendText("\r\n" + "setting gamerule to false");
+                    command.SendCommand("gamerule dodaylightcycle false");
+                }
+            }
+
+            if (radio_keepinv.Checked)
+            {
+                //change gamerule keepinventory
+
+                if (grt.Checked)
+                {
+                    richTextLog.AppendText("\r\n" + "setting gamerule to true");
+                    command.SendCommand("gamerule keepinventory true");
+                }
+
+                else if (grf.Checked)
+                {
+                    richTextLog.AppendText("\r\n" + "setting gamerule to false");
+                    command.SendCommand("gamerule keepinventory false");
+                }
+            }
+
         }
 
 
@@ -184,44 +314,144 @@ namespace mc_control_v2
         //user selection logging
         private void radio_Gamemode_CheckedChanged(object sender, EventArgs e)
         {
-            richTextLog.AppendText("\r\n" + "===================================================");
-            richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + "Selected Gamemode change");
-            richTextLog.ScrollToCaret();
+            if (radio_Gamemode.Checked)
+            {
+                richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + " Selected Gamemode change");
+                richTextLog.ScrollToCaret();
+            }
+
+        }
+
+        private void richTextLog_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radio_unban_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radio_unban.Checked)
+            {
+                richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + " Selected pardon player " + usernametextbox.Text);
+                richTextLog.ScrollToCaret();
+            }
         }
 
         private void radio_OP_CheckedChanged(object sender, EventArgs e)
         {
-            richTextLog.AppendText("\r\n" + "===================================================");
-            richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + "Selected Op player");
-            richTextLog.ScrollToCaret();
+            if (radio_OP.Checked)
+            {
+                richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + " Selected OP player " + usernametextbox.Text);
+                richTextLog.ScrollToCaret();
+            }
         }
 
         private void radio_Deop_CheckedChanged(object sender, EventArgs e)
         {
-            richTextLog.AppendText("\r\n" + "===================================================");
-            richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + "Selected DeOp player");
-            richTextLog.ScrollToCaret();
+            if (radio_Deop.Checked)
+            {
+                richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + " Selected DeOP player " + usernametextbox.Text);
+                richTextLog.ScrollToCaret();
+            }
         }
 
         private void radio_Kick_CheckedChanged(object sender, EventArgs e)
         {
-            richTextLog.AppendText("\r\n" + "===================================================");
-            richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + "Selected Kick player");
-            richTextLog.ScrollToCaret();
+            if (radio_Kick.Checked)
+            {
+                richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + " Selected Kick player " + usernametextbox.Text);
+                richTextLog.ScrollToCaret();
+            }
         }
 
         private void radio_Ban_CheckedChanged(object sender, EventArgs e)
         {
-            richTextLog.AppendText("\r\n" + "===================================================");
-            richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + "Selected Ban player");
-            richTextLog.ScrollToCaret();
+            if (radio_Ban.Checked)
+            {
+                richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + " Selected Ban player " + usernametextbox.Text);
+                richTextLog.ScrollToCaret();
+            }
+        }
+
+        private void radio_tp_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radio_tp.Checked)
+            {
+                richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + " Selected teleport player " + usernametextbox.Text);
+                richTextLog.ScrollToCaret();
+            }
         }
 
         private void radio_Ipban_CheckedChanged(object sender, EventArgs e)
         {
-            richTextLog.AppendText("\r\n" + "===================================================");
-            richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + "Selected IP Ban");
-            richTextLog.ScrollToCaret();
+            if (radio_Ipban.Checked)
+            {
+                richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + " Selected IP ban player " + usernametextbox.Text);
+                richTextLog.ScrollToCaret();
+            }
+        }
+
+        private void radio_pardonip_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radio_pardonip.Checked)
+            {
+                richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + " Selected pardon IP ");
+                richTextLog.ScrollToCaret();
+            }
+        }
+
+        private void radio_say_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radio_say.Checked)
+            {
+                richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + " Selected Send message to target ");
+                richTextLog.ScrollToCaret();
+            }
+        }
+
+        private void radio_diff_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radio_diff.Checked)
+            {
+                richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + " Selected Set game difficulty");
+                richTextLog.ScrollToCaret();
+            }
+        }
+
+        private void radio_downfall_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radio_downfall.Checked)
+            {
+                richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + " Selected Toggle down fall");
+                richTextLog.ScrollToCaret();
+            }
+        }
+
+        private void radio_time_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radio_time.Checked)
+            {
+                richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + " Selected Set time");
+                richTextLog.ScrollToCaret();
+            }
+        }
+
+        private void radio_daylightcycle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radio_daylightcycle.Checked)
+            {
+                richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + " Selected set gamerule 'Daylight cycle'");
+                richTextLog.ScrollToCaret();
+            }
+        }
+
+        private void radio_keepinv_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radio_keepinv.Checked)
+            {
+                richTextLog.AppendText("\r\n" + "pc >> " + address + " : " + port + " Selected set gamerule 'keep inventory'");
+
+                richTextLog.ScrollToCaret();
+            }
         }
     }
 }

@@ -30,11 +30,27 @@
         {
             gamemodeDrop = new ComboBox();
             groupBox1 = new GroupBox();
-            radio_unban = new RadioButton();
+            groupBox2 = new GroupBox();
+            grf = new RadioButton();
+            grt = new RadioButton();
+            timevalBox = new TextBox();
+            difficultyDrop = new ComboBox();
+            panel1 = new Panel();
+            targetsay_box = new TextBox();
+            radio_keepinv = new RadioButton();
+            radio_time = new RadioButton();
+            radio_daylightcycle = new RadioButton();
+            radio_downfall = new RadioButton();
+            radio_diff = new RadioButton();
+            say_msg = new TextBox();
+            radio_say = new RadioButton();
+            radio_Ipban = new RadioButton();
             pardontextbox = new TextBox();
             radio_pardonip = new RadioButton();
+            targettp_box = new TextBox();
+            radio_unban = new RadioButton();
+            radio_tp = new RadioButton();
             kbreasontextbox = new TextBox();
-            radio_Ipban = new RadioButton();
             radio_Ban = new RadioButton();
             radio_Kick = new RadioButton();
             radio_Deop = new RadioButton();
@@ -46,11 +62,9 @@
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             richTextLog = new RichTextBox();
-            groupBox2 = new GroupBox();
-            label2 = new Label();
             groupBox1.SuspendLayout();
-            statusStrip1.SuspendLayout();
             groupBox2.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // gamemodeDrop
@@ -64,12 +78,26 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(radio_unban);
+            groupBox1.Controls.Add(groupBox2);
+            groupBox1.Controls.Add(timevalBox);
+            groupBox1.Controls.Add(difficultyDrop);
+            groupBox1.Controls.Add(panel1);
+            groupBox1.Controls.Add(targetsay_box);
+            groupBox1.Controls.Add(radio_keepinv);
+            groupBox1.Controls.Add(radio_time);
+            groupBox1.Controls.Add(radio_daylightcycle);
+            groupBox1.Controls.Add(radio_downfall);
+            groupBox1.Controls.Add(radio_diff);
+            groupBox1.Controls.Add(say_msg);
+            groupBox1.Controls.Add(radio_say);
+            groupBox1.Controls.Add(radio_Ipban);
             groupBox1.Controls.Add(pardontextbox);
             groupBox1.Controls.Add(radio_pardonip);
+            groupBox1.Controls.Add(targettp_box);
+            groupBox1.Controls.Add(radio_unban);
+            groupBox1.Controls.Add(radio_tp);
             groupBox1.Controls.Add(gamemodeDrop);
             groupBox1.Controls.Add(kbreasontextbox);
-            groupBox1.Controls.Add(radio_Ipban);
             groupBox1.Controls.Add(radio_Ban);
             groupBox1.Controls.Add(radio_Kick);
             groupBox1.Controls.Add(radio_Deop);
@@ -79,41 +107,220 @@
             groupBox1.Controls.Add(usernametextbox);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(255, 260);
+            groupBox1.Size = new Size(513, 260);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Player Related";
+            groupBox1.Text = "Actions";
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(grf);
+            groupBox2.Controls.Add(grt);
+            groupBox2.Location = new Point(271, 200);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(150, 44);
+            groupBox2.TabIndex = 27;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Gamerule option";
+            // 
+            // grf
+            // 
+            grf.AutoSize = true;
+            grf.Location = new Point(82, 19);
+            grf.Name = "grf";
+            grf.Size = new Size(51, 19);
+            grf.TabIndex = 0;
+            grf.TabStop = true;
+            grf.Text = "False";
+            grf.UseVisualStyleBackColor = true;
+            // 
+            // grt
+            // 
+            grt.AutoSize = true;
+            grt.Location = new Point(13, 19);
+            grt.Name = "grt";
+            grt.Size = new Size(47, 19);
+            grt.TabIndex = 0;
+            grt.TabStop = true;
+            grt.Text = "True";
+            grt.UseVisualStyleBackColor = true;
+            // 
+            // timevalBox
+            // 
+            timevalBox.Location = new Point(346, 125);
+            timevalBox.Name = "timevalBox";
+            timevalBox.PlaceholderText = "Time value 0-24000";
+            timevalBox.Size = new Size(161, 23);
+            timevalBox.TabIndex = 26;
+            // 
+            // difficultyDrop
+            // 
+            difficultyDrop.DropDownStyle = ComboBoxStyle.DropDownList;
+            difficultyDrop.FormattingEnabled = true;
+            difficultyDrop.Location = new Point(353, 76);
+            difficultyDrop.Name = "difficultyDrop";
+            difficultyDrop.Size = new Size(154, 23);
+            difficultyDrop.TabIndex = 25;
+            // 
+            // panel1
+            // 
+            panel1.Location = new Point(255, 9);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(10, 249);
+            panel1.TabIndex = 24;
+            // 
+            // targetsay_box
+            // 
+            targetsay_box.Location = new Point(321, 50);
+            targetsay_box.Name = "targetsay_box";
+            targetsay_box.PlaceholderText = "Target";
+            targetsay_box.Size = new Size(60, 23);
+            targetsay_box.TabIndex = 23;
+            // 
+            // radio_keepinv
+            // 
+            radio_keepinv.AutoSize = true;
+            radio_keepinv.Location = new Point(271, 176);
+            radio_keepinv.Name = "radio_keepinv";
+            radio_keepinv.Size = new Size(104, 19);
+            radio_keepinv.TabIndex = 22;
+            radio_keepinv.TabStop = true;
+            radio_keepinv.Text = "Keep inventory";
+            radio_keepinv.UseVisualStyleBackColor = true;
+            radio_keepinv.CheckedChanged += radio_keepinv_CheckedChanged;
+            // 
+            // radio_time
+            // 
+            radio_time.AutoSize = true;
+            radio_time.Location = new Point(271, 126);
+            radio_time.Name = "radio_time";
+            radio_time.Size = new Size(69, 19);
+            radio_time.TabIndex = 22;
+            radio_time.TabStop = true;
+            radio_time.Text = "Time set";
+            radio_time.UseVisualStyleBackColor = true;
+            radio_time.CheckedChanged += radio_time_CheckedChanged;
+            // 
+            // radio_daylightcycle
+            // 
+            radio_daylightcycle.AutoSize = true;
+            radio_daylightcycle.Location = new Point(271, 151);
+            radio_daylightcycle.Name = "radio_daylightcycle";
+            radio_daylightcycle.Size = new Size(99, 19);
+            radio_daylightcycle.TabIndex = 22;
+            radio_daylightcycle.TabStop = true;
+            radio_daylightcycle.Text = "Daylight cycle";
+            radio_daylightcycle.UseVisualStyleBackColor = true;
+            radio_daylightcycle.CheckedChanged += radio_daylightcycle_CheckedChanged;
+            // 
+            // radio_downfall
+            // 
+            radio_downfall.AutoSize = true;
+            radio_downfall.Location = new Point(271, 101);
+            radio_downfall.Name = "radio_downfall";
+            radio_downfall.Size = new Size(107, 19);
+            radio_downfall.TabIndex = 22;
+            radio_downfall.TabStop = true;
+            radio_downfall.Text = "ToggleDownfall";
+            radio_downfall.UseVisualStyleBackColor = true;
+            radio_downfall.CheckedChanged += radio_downfall_CheckedChanged;
+            // 
+            // radio_diff
+            // 
+            radio_diff.AutoSize = true;
+            radio_diff.Location = new Point(271, 76);
+            radio_diff.Name = "radio_diff";
+            radio_diff.Size = new Size(76, 19);
+            radio_diff.TabIndex = 22;
+            radio_diff.TabStop = true;
+            radio_diff.Text = "Difficulty ";
+            radio_diff.UseVisualStyleBackColor = true;
+            radio_diff.CheckedChanged += radio_diff_CheckedChanged;
+            // 
+            // say_msg
+            // 
+            say_msg.Location = new Point(387, 50);
+            say_msg.Name = "say_msg";
+            say_msg.PlaceholderText = "Message";
+            say_msg.Size = new Size(120, 23);
+            say_msg.TabIndex = 21;
+            // 
+            // radio_say
+            // 
+            radio_say.AutoSize = true;
+            radio_say.Location = new Point(271, 51);
+            radio_say.Name = "radio_say";
+            radio_say.Size = new Size(43, 19);
+            radio_say.TabIndex = 20;
+            radio_say.TabStop = true;
+            radio_say.Text = "Say";
+            radio_say.UseVisualStyleBackColor = true;
+            radio_say.CheckedChanged += radio_say_CheckedChanged;
+            // 
+            // radio_Ipban
+            // 
+            radio_Ipban.AutoSize = true;
+            radio_Ipban.Location = new Point(6, 226);
+            radio_Ipban.Name = "radio_Ipban";
+            radio_Ipban.Size = new Size(55, 19);
+            radio_Ipban.TabIndex = 17;
+            radio_Ipban.TabStop = true;
+            radio_Ipban.Text = "IPBan";
+            radio_Ipban.UseVisualStyleBackColor = true;
+            radio_Ipban.CheckedChanged += radio_Ipban_CheckedChanged;
+            // 
+            // pardontextbox
+            // 
+            pardontextbox.AccessibleDescription = "";
+            pardontextbox.Location = new Point(353, 25);
+            pardontextbox.Name = "pardontextbox";
+            pardontextbox.PlaceholderText = "IP ";
+            pardontextbox.Size = new Size(154, 23);
+            pardontextbox.TabIndex = 19;
+            // 
+            // radio_pardonip
+            // 
+            radio_pardonip.AutoSize = true;
+            radio_pardonip.Location = new Point(271, 26);
+            radio_pardonip.Name = "radio_pardonip";
+            radio_pardonip.Size = new Size(76, 19);
+            radio_pardonip.TabIndex = 18;
+            radio_pardonip.TabStop = true;
+            radio_pardonip.Text = "Pardon ip";
+            radio_pardonip.UseVisualStyleBackColor = true;
+            radio_pardonip.CheckedChanged += radio_pardonip_CheckedChanged;
+            // 
+            // targettp_box
+            // 
+            targettp_box.Location = new Point(64, 200);
+            targettp_box.Name = "targettp_box";
+            targettp_box.PlaceholderText = "Target";
+            targettp_box.Size = new Size(185, 23);
+            targettp_box.TabIndex = 16;
             // 
             // radio_unban
             // 
             radio_unban.AutoSize = true;
-            radio_unban.Location = new Point(6, 201);
+            radio_unban.Location = new Point(6, 176);
             radio_unban.Name = "radio_unban";
             radio_unban.Size = new Size(60, 19);
             radio_unban.TabIndex = 13;
             radio_unban.TabStop = true;
             radio_unban.Text = "Unban";
             radio_unban.UseVisualStyleBackColor = true;
+            radio_unban.CheckedChanged += radio_unban_CheckedChanged;
             // 
-            // pardontextbox
+            // radio_tp
             // 
-            pardontextbox.AccessibleDescription = "";
-            pardontextbox.Location = new Point(88, 225);
-            pardontextbox.Name = "pardontextbox";
-            pardontextbox.PlaceholderText = "IP ";
-            pardontextbox.Size = new Size(161, 23);
-            pardontextbox.TabIndex = 12;
-            // 
-            // radio_pardonip
-            // 
-            radio_pardonip.AutoSize = true;
-            radio_pardonip.Location = new Point(6, 226);
-            radio_pardonip.Name = "radio_pardonip";
-            radio_pardonip.Size = new Size(76, 19);
-            radio_pardonip.TabIndex = 11;
-            radio_pardonip.TabStop = true;
-            radio_pardonip.Text = "Pardon ip";
-            radio_pardonip.UseVisualStyleBackColor = true;
+            radio_tp.AutoSize = true;
+            radio_tp.Location = new Point(6, 201);
+            radio_tp.Name = "radio_tp";
+            radio_tp.Size = new Size(52, 19);
+            radio_tp.TabIndex = 15;
+            radio_tp.TabStop = true;
+            radio_tp.Text = "TP to";
+            radio_tp.UseVisualStyleBackColor = true;
+            radio_tp.CheckedChanged += radio_tp_CheckedChanged;
             // 
             // kbreasontextbox
             // 
@@ -122,18 +329,6 @@
             kbreasontextbox.PlaceholderText = "Reason of kick/ban";
             kbreasontextbox.Size = new Size(177, 23);
             kbreasontextbox.TabIndex = 9;
-            // 
-            // radio_Ipban
-            // 
-            radio_Ipban.AutoSize = true;
-            radio_Ipban.Location = new Point(6, 176);
-            radio_Ipban.Name = "radio_Ipban";
-            radio_Ipban.Size = new Size(55, 19);
-            radio_Ipban.TabIndex = 8;
-            radio_Ipban.TabStop = true;
-            radio_Ipban.Text = "IPBan";
-            radio_Ipban.UseVisualStyleBackColor = true;
-            radio_Ipban.CheckedChanged += radio_Ipban_CheckedChanged;
             // 
             // radio_Ban
             // 
@@ -226,7 +421,7 @@
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
             statusStrip1.Location = new Point(0, 466);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(539, 22);
+            statusStrip1.Size = new Size(537, 22);
             statusStrip1.TabIndex = 1;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -238,53 +433,33 @@
             // 
             // richTextLog
             // 
+            richTextLog.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point);
             richTextLog.Location = new Point(12, 278);
             richTextLog.Name = "richTextLog";
             richTextLog.ReadOnly = true;
             richTextLog.Size = new Size(516, 148);
             richTextLog.TabIndex = 2;
-            richTextLog.Text = "";
-            // 
-            // groupBox2
-            // 
-            groupBox2.BackColor = SystemColors.AppWorkspace;
-            groupBox2.Controls.Add(label2);
-            groupBox2.Location = new Point(273, 12);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(255, 260);
-            groupBox2.TabIndex = 11;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Server Related";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = SystemColors.ActiveBorder;
-            label2.Location = new Point(6, 242);
-            label2.Name = "label2";
-            label2.Size = new Size(86, 15);
-            label2.TabIndex = 0;
-            label2.Text = "Yet to be made";
+            richTextLog.Text = "---CONSOLE---\n› Server console feedback is not possible due to limitations";
+            richTextLog.TextChanged += richTextLog_TextChanged;
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(539, 488);
-            Controls.Add(groupBox2);
+            ClientSize = new Size(537, 488);
             Controls.Add(playerExecute);
             Controls.Add(richTextLog);
             Controls.Add(statusStrip1);
             Controls.Add(groupBox1);
             Name = "Form2";
-            Text = "Form2";
+            Text = "MCRCON ";
             Load += Form2_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            statusStrip1.ResumeLayout(false);
-            statusStrip1.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -302,14 +477,28 @@
         private RadioButton radio_Ban;
         private RadioButton radio_Kick;
         private Button playerExecute;
-        private RadioButton radio_Ipban;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private RichTextBox richTextLog;
-        private GroupBox groupBox2;
+        private RadioButton radio_unban;
+        private TextBox targettp_box;
+        private RadioButton radio_tp;
+        private TextBox targetsay_box;
+        private RadioButton radio_diff;
+        private TextBox say_msg;
+        private RadioButton radio_say;
+        private RadioButton radio_Ipban;
         private TextBox pardontextbox;
         private RadioButton radio_pardonip;
-        private RadioButton radio_unban;
-        private Label label2;
+        private Panel panel1;
+        private RadioButton radio_keepinv;
+        private RadioButton radio_time;
+        private RadioButton radio_daylightcycle;
+        private RadioButton radio_downfall;
+        private ComboBox difficultyDrop;
+        private TextBox timevalBox;
+        private GroupBox groupBox2;
+        private RadioButton grf;
+        private RadioButton grt;
     }
 }

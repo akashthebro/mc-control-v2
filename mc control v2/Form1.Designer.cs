@@ -36,6 +36,7 @@
             label4 = new Label();
             pw_textbox = new TextBox();
             button1 = new Button();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)port_box).BeginInit();
             SuspendLayout();
             // 
@@ -110,11 +111,23 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_1;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(0, 161);
+            label5.Name = "label5";
+            label5.Size = new Size(302, 37);
+            label5.TabIndex = 8;
+            label5.Text = "If you get an error when continuing,\r\nIt might be because the server credentials being invaid";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
+            label5.UseCompatibleTextRendering = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(300, 170);
+            ClientSize = new Size(300, 204);
+            Controls.Add(label5);
             Controls.Add(button1);
             Controls.Add(pw_textbox);
             Controls.Add(label4);
@@ -124,7 +137,7 @@
             Controls.Add(ip_textbox);
             Controls.Add(label1);
             Name = "Form1";
-            Text = "Form1";
+            Text = "MCRCON";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)port_box).EndInit();
             ResumeLayout(false);
@@ -141,5 +154,6 @@
         private Label label4;
         private TextBox pw_textbox;
         private Button button1;
+        private Label label5;
     }
 }
