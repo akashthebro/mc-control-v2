@@ -2,7 +2,7 @@
 
 A simple minecraft gui rcon client
 
-![programme screenshot](https://cdn.discordapp.com/attachments/572490173645062156/1162784029242822736/image.png)
+![programme screenshot](https://github.com/akashthebro/mc-control-v2/blob/master/screenshot.jpg)
 
 ##  Description
 
